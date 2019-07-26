@@ -1,17 +1,20 @@
 <!DOCTYPE html>
+<html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <title>
-	Check Yo Self 
+	Check Yo' Self 
 </title>
 <body>
 <!-- HEADER**************************** -->
 	<header>
 		<section class="header__section--left">
-			<h1>CHECK <span style="color:#ffc30c">YO'</span> SELF</h1>
+			<h1>
+				CHECK <span style="color:#ffc30c">YO'</span> SELF
+			</h1>
 		</section>
 		<section class="header__section--right">
 			<button class="header__button--right">
@@ -22,25 +25,43 @@
 	</header>
 <!-- NAV**********************************	 -->
 	<nav>
-		<section class="nav__section--top">
-			<h4> 
-				Task Title
-			</h4>
-			<input class="nav__task--title"></input>
-			<h4>
-				Task Item
-		  </h4>
-			<input class="nav__task--item"></input>
-			<button>Make Task List</button>
-			<button>Clear All</button>
+		<div id="nav-menu-divider">
+		 <section class="nav__section--top"> 
+					<p>
+					Task Title
+				  </p>
+				<input class="nav__input--title" type="text"></input>
+				 <div class="nav__task--list">
+				 </div>
+					<p>
+						Task Item
+					</p>
+				 <div class="nav__task--container">
+					<input class="nav__input--item" type="text"></input>
+			 	  <button class="nav__button--task">
+						<img id="nav__plus--icon" src="icons/plus.svg" alt="Make task card">
+			    </button>
+			  </div>
+			<button class="nav__button--list">
+				Make Task List
+			</button>
+			<button class="nav__button--clear">
+				Clear All
+			</button>
+	 </div>		
+			<button class="nav__urgency--button">
+				Filter by Urgency
+			</button>
 		</section>
-<!-- SECTION BODY MAIN******************************		 -->
 		<section class="nav__section--bottom">
-			<button>Filter by Urgency</button>
 	  </section>
 	</nav>
+<!-- SECTION BODY MAIN******************************		 -->
 	<section class="section__body--main">
 		
 	</section>
 	
 </body>
+	<script src="main.js"></script>
+	<script src="todo-list.js"></script>
+</html>
