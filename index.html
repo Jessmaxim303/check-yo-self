@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <title>
 	Check Yo Self 
 </title>
 <body>
+<!-- HEADER**************************** -->
 	<header>
 		<section class="header__section--left">
-			<h1>CHECK YO' SELF</h1>
+			<h1>CHECK <span style="color:#ffc30c">YO'</span> SELF</h1>
 		</section>
 		<section class="header__section--right">
-			<button>icon</button>
-			<input>Search</input>
+			<button class="header__button--right">
+				<img id="header__search--icon" src="icons/search.svg" alt="Search Icon">
+			</button>
+			<input class="header__input--right" type="text" placeholder="Search"></input>
 		</section>	
 	</header>
+<!-- NAV**********************************	 -->
 	<nav>
 		<section class="nav__section--top">
 			<h4> 
@@ -29,6 +34,7 @@
 			<button>Make Task List</button>
 			<button>Clear All</button>
 		</section>
+<!-- SECTION BODY MAIN******************************		 -->
 		<section class="nav__section--bottom">
 			<button>Filter by Urgency</button>
 	  </section>
