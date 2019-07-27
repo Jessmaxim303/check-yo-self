@@ -173,6 +173,10 @@ nav p {
     margin: 12% auto 6% auto;
 }
 
+.nav__urgency--button:hover {
+	background: #ef4a23;
+}
+
 /***NAV TEMP TASK LIST************/
 
 #task__temp--container {
@@ -222,6 +226,8 @@ nav p {
 	display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    font-family: 'Open Sans', sans-serif;
+    color: #1e1f3d;
     max-height: 1000px;
     column-count: 4;
     column-gap: 1em;
@@ -238,21 +244,84 @@ nav p {
     min-width: 150px;
     margin: 0 8px 8px 0;
     background: #ffffff;
-    border: 1px solid red;
+    border: 1px solid #c7d3d8;
     display: inline-block;
    /* margin: 0 0 1em;*/
     width: 100%;
 }
 
 #section__task--card {
-	width: 100%
-	background: yellow;
-	border: 1px dotted purple;
-    height: 250px;
-    min-width: 150px;
+	width: 100%;
+	background: #fafdff;
+	/*border: 1px dotted purple;*/
+    height: 100%;
+    min-width: 350px;
     margin: 0 8px 8px 0;
     display: inline-block;
 }
+
+#section__task--card h3 {
+	font-size: 2em;
+	width: 60%;
+	padding-left: 3%;
+	color: #1e1f3d;
+}
+
+#section__task--card p {
+	font-size: 1.25em;
+	float: right;
+	padding-left: 10px;
+}
+
+#body__icon--checkbox {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	border: 2px solid #1e1f3d;
+	border-radius: 50%;
+}
+
+#taskCardBody {
+	display: flex;
+    align-items: center;
+    height: 45px;
+    padding: 0 10px 0 10px;
+}
+
+#task__card--border {
+	height: 70%;
+	width: 100%;
+	border-top: 1px solid #c7d3d8;
+	border-bottom: 1px solid #c7d3d8;
+}
+
+#body__icon--urgent {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+}
+
+#body__icon--delete {
+	width: 25px;
+	height: 25px;
+	/*display: inline-block;*/
+}
+
+#body__icon--bottom {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    padding: 0 10px 0 10px;
+}
+
+/*#taskListBox {
+	display: flex;
+    align-items: center;
+	border: 1px solid red;
+	height: 40px;
+}*/
+
 
 /*#taskCardBody*/
 

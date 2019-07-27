@@ -34,10 +34,20 @@ function newTaskCards(e) {
     `<container id="task__card--container">
    	  <article id="section__task--card">
     		<h3>${navTitleInput.value}</h3>
-    			<article id="taskCardBody">
-   		  <p>${taskItemInput.value}</p>
+    		  <div id="task__card--border">
+    				<div id="taskListBox">
+    					<article id="taskCardBody">
+    				 	 <img id="body__icon--checkbox" src="icons/checkbox.svg" alt="Task list check box">
+   		  		 	 <p>${taskItemInput.value}</p>
+   		  	  	</article>
+   		  		</div>
+    		  </div>
+    		  <div id="body__icon--bottom">
+   		  		<img id="body__icon--urgent" src="icons/urgent.svg" alt="Make task urgent">
+   		  		<img id="body__icon--delete" src="icons/delete.svg" alt="Delete the task">
+   		  	</div>	
     	</article>
-    </container>`)
+     </container>`)
 }
 
 // <container id="task__card--container">
