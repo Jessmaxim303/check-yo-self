@@ -16,7 +16,7 @@ body {
     "nav body body"
     "nav body body";
   	grid-template-rows: 7% 30% 30%; 
-  	grid-template-columns: 30% 1fr 1fr;
+  	grid-template-columns: 30% 40% 30%;
   	height: 150vh;
 }
 
@@ -83,9 +83,10 @@ nav {
 
 nav p {
 	margin-left: 2px;
+	margin-top: 20px;
 }
 
-#nav-menu-divider {
+#nav__menu--divider {
 	width: 100%;
 	border-bottom: 1px solid #1e1f3d; 
 	padding: 12px;
@@ -99,12 +100,14 @@ nav p {
 }
 
 .nav__input--title {
-	height: 40px;
-	width: 100%;
-	background: #ffffff;
-	border: 2px solid #1e1f3d;
-	border-radius: 3px;
-	margin: 1% 0 12% 0;
+	padding-left: 2%;
+    height: 40px;
+    width: 100%;
+    background: #ffffff;
+    font-size: 16px;
+    border: 2px solid #1e1f3d;
+    border-radius: 3px;
+    margin: 1% 0 12% 0;
 }
 
 .nav__task--container {
@@ -114,9 +117,11 @@ nav p {
 }
 
 .nav__input--item {
+	padding-left: 2%;
 	height: 40px;
 	width: 85%;
 	display: inline-block;
+	font-size: 16px;
 	background: #ffffff;
 	border: 2px solid #1e1f3d;
 	border-radius: 3px;
@@ -144,7 +149,6 @@ nav p {
 	border: 2px solid #1e1f3d;
 	border-radius: 3px;
 	margin: 7% 0 6% 0;
-	padding: 0 2% 2% 2%;
 }
 
 .nav__button--clear {
@@ -165,19 +169,96 @@ nav p {
     color: #ffffff;
     font-size: 16px;
     border: 2px solid #1e1f3d;
+    border-radius: 3px;
     margin: 12% auto 6% auto;
 }
+
+/***NAV TEMP TASK LIST************/
+
+#task__temp--container {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	padding-right: 15%;
+}
+
+#task__temp--container h4 {
+	margin-left: 10px;
+}
+
+.nav__task--delete {
+	width: 30px
+	height: 30px;
+	display: inline-block;
+	background: #ffffff;
+	border: 1px solid #587A8A;
+	border-radius: 50%;
+}
+
+.nav__task--list {
+	margin: 10px 0 20px;
+}
+
+.nav__task--list p {
+	margin-top: 20px;
+}
+
+
+#nav__task--icondelete {
+	width: 25px;
+	width: 25px;
+}
+
+.task__card--container {
+	width: 30%;
+}
+
 
 
 /******** BODY SECTION **********/
 
 .section__body--main {
-	grid-area: body; 
+	box-sizing: border-box;
 	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	background: #F3F6F7;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 1000px;
+    column-count: 4;
+    column-gap: 1em;
+    padding: 5%;
 }
 
+/*<container id="task__card--container">
+<article id="section__task--card">*/
+
+#task__card--container {
+  	flex: auto;
+	justify-content: center;
+    height: 250px;
+    min-width: 150px;
+    margin: 0 8px 8px 0;
+    background: #ffffff;
+    border: 1px solid red;
+    display: inline-block;
+   /* margin: 0 0 1em;*/
+    width: 100%;
+}
+
+#section__task--card {
+	width: 100%
+	background: yellow;
+	border: 1px dotted purple;
+    height: 250px;
+    min-width: 150px;
+    margin: 0 8px 8px 0;
+    display: inline-block;
+}
+
+/*#taskCardBody*/
+
 /******** MEDIA QUERY SECTION **********/
+
+@media only screen and (max-width: 1120px) {
+
+}
 
