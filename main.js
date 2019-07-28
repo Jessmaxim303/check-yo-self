@@ -1,32 +1,66 @@
 // inner text function
-var makeNavList = document.querySelector('.nav__button--task');
+var makeTaskPlus = document.querySelector('.js__add--task');
 var makeTaskCard = document.querySelector('.nav__button--list');
 var deleteButton = document.getElementById('nav__task--list');
 var navTitleInput = document.querySelector('.nav__input--title');
-var taskItemInput = document.querySelector('.nav__input--item');
+var taskInputItem = document.querySelector('.task__input--item');
+var navTaskList = document.getElementById('nav__task--list');
 
-var taskTempContainer = document.getElementById('task__temp--container');
+var navTaskList = document.getElementById('nav__task--list');
 var bodyMainSection = document.querySelector('.section__body--main');
 var sectionTaskCard = document.getElementById('section__task--card');
 var clearButton = document.getElementById('nav__button--clear');
-var navTaskList = document.getElementById('nav__task--list');
 var todos = [];
 
 
 // EVENT LISTENER *******************
 
-makeNavList.addEventListener("click", tempTaskList);
-makeTaskCard.addEventListener("click", newTaskCards);
+makeTaskPlus.addEventListener("click", addTaskItem);
+navTaskList.addEventListener("click", deleteTaskItem);
+// makeTaskCard.addEventListener("click", newToDoInstance);
 // deleteButton.addEventListerner("click", clearTempTasks);
 
 // FUNCTIONS ************************
 function getTitle(e){
-  return navTitleInput.value
+  return navTitleInput.value;
 }
 
 function getTask(e){
-  return taskItemInput.value
+  return taskInputItem.value;
 }
+
+function addTaskItem() {
+  var task = new Task({
+    id: Date.now(),
+    isCompleted: false,
+    text: getTask(),
+  });
+  todos.push(task);
+  navTaskList.insertAdjacentHTML('afterbegin',
+    `<ul id="task__temp--container" data-id=${task.id}>
+        <button id="nav__task--icondelete">
+          <img id="nav__task--icon" src="icons/delete.svg" alt="Delete Task"> 
+        </button>
+      <li>${getTask()}</li>
+    </ul>`);
+clearInputs()
+}
+
+function deleteTaskItem(e) {
+  e.target.closest('ul').remove('remove');
+}
+
+function populateTasks(array) {
+   var taskList = `<ul class="article__ul">`;
+    tasks.forEach(function(todos) {
+     ulList += `<li class="article__item--li" data-id="${taskItem.id}">
+     <img src="images/checkbox.svg" class="article__img--checkbox">
+     ${taskItem.text}
+     </li>`
+  })
+  return ulList
+}
+
 
 function enableSaveButton(e) {
   if (taskItemInput.value !="" && navTitleInput.value !="") {
@@ -38,43 +72,22 @@ function disableSaveButton(e) {
   makeTaskCard.disabled = true;
 }
 
-function newToDoInstance(){
-  var title = getTitle();
-  var task = getTask();
-  var todo = new Todo(Date.now(), title, task, false);
-  // todos.unshift(todo);
-  enableSaveButton();
-  todo.saveToStorage(todos);
-  newTaskCards(todo);
+function taskSave(todo){      
+   e.preventDefault()
+  if(e.target === makeTaskCard){
+    newToDoInstance()
+    clearInputs(e)
+    disableSaveButton();
+  }
+}
+
+function saveTodo(objectArray) {
+	var todo = new ToDo(Date.now(), titleInput.value, todos, urgent.value);
+	toDoArray.push(todos);
+	colsole.log(todos)
 };
 
 
-
-// function saveTodo(objectArray) {
-// 	var todo = new ToDo(Date.now(), titleInput.value, todo[i], urgent.value);
-// 	toDoArray.push(todos);
-// 	colsole.log(todos)
-// };
-
-// function saveToDo(objectArray) {
-//   var toDo = new ToDoList(Date.now(), navTitleInput.value, objectArray);
-//   toDoArray.push(toDo);
-//   toDo.saveToStorage(toDoArray);
-//   createCard(toDo);
-// };
-
-function tempTaskList(e) {
-	console.log('hello task');
-	todos.push(taskItemInput.value);
-  navTaskList.insertAdjacentHTML('afterbegin',
-    `<article id="task__temp--container">
-    	  <button id="nav__task--icondelete">
-      	  <img id="nav__task--icon" src="icons/delete.svg" alt="Delete Task">	
-      	</button>
-   	  <li>${taskItemInput.value}</li>
-    </article>`);
-  clearInputs(e);
-};
 
 function clearTempTasks(e) {
 	console.log("clear temp tasks")
@@ -92,6 +105,7 @@ function newTaskCards(todo) {
     				<div id="taskListBox">
     					<article id="taskCardBody">
     				 	 <img id="body__icon--checkbox" src="icons/checkbox.svg" alt="Task list check box">
+               <div class='article__ul'>${populateTasks(globalArray)}</div>
    		  		 	 <p>${taskItemInput.value}</p>
    		  	  	</article>
    		  		</div>
@@ -105,7 +119,7 @@ function newTaskCards(todo) {
 };
 
 function clearInputs(e) {
-  document.querySelectorAll(".nav__input--item").forEach(input=>{
+  document.querySelectorAll(".task__input--item").forEach(input=>{
     input.value = "";
   });
 };
@@ -113,46 +127,4 @@ function clearInputs(e) {
 // function urgentColorState() {
 
 // };
-
-
-// HTML
-// <input type="text" placeholder ="Add List" id="listItem"/>
-// <button id="addButton">add Item</button>
-// <button id="clearButton">Clear Items</button>
-// <ul id="output"></ul>
-
-
-
-//   function addTempList(e) {
-//   	colosole.log('addTempList working!');
-//     var text = document.getElementById('nav__button--list').value;
-//     var addItem = document.getElementById('nav__task--list');
-//     var entry = document.createElement("li");
-//     text += '<img id="nav__task--icondelete" src="icons/delete.svg" alt="Delete Task">';
-//     entry.innerHTML = text;    
-//     addItem.appendChild(entry);
-//     clearInputs(e);
-// };
-
-
-// 	function clearTempTasks(e) {
-//     var text = document.getElementById('listItem');
-//     var addItem = document.getElementById('output');
-//     addItem.innerHTML = '';
-//     text.value = '';
-// };
-
-// `$(document)`.on('click','.deleteButton', function() {
-//     $(this).parent().remove();    
-// });
-
-
-
-
-
-
-
-
-
-
 

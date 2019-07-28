@@ -118,7 +118,7 @@ nav p {
 	margin-top: 1%;
 }
 
-.nav__input--item {
+.task__input--item {
 	padding-left: 2%;
 	height: 40px;
 	width: 90%;
@@ -129,7 +129,7 @@ nav p {
 	border-radius: 3px 0 0 3px;
 }
 
-.nav__button--task {
+.js__add--task {
 	height: 40px;
 	width: 40px;
 	font-size: 1.35em;
@@ -206,7 +206,9 @@ nav p {
 	border-radius: 50%;
 }
 
-.nav__task--list {
+#nav__task--list {
+	display: flex;
+	flex-direction: column-reverse;
 	margin: 10px 0 20px;
 }
 
