@@ -10,6 +10,7 @@ var navTaskList = document.getElementById('nav__task--list');
 var bodyMainSection = document.querySelector('.section__body--main');
 var sectionTaskCard = document.getElementById('section__task--card');
 var clearButton = document.getElementById('nav__button--clear');
+var mainArray = [];
 var todos = [];
 
 
@@ -17,7 +18,7 @@ var todos = [];
 
 makeTaskPlus.addEventListener("click", addTaskItem);
 navTaskList.addEventListener("click", deleteTaskItem);
-// makeTaskCard.addEventListener("click", newToDoInstance);
+makeTaskCard.addEventListener("click", newToDoInstance);
 // deleteButton.addEventListerner("click", clearTempTasks);
 
 // FUNCTIONS ************************
@@ -50,6 +51,44 @@ function deleteTaskItem(e) {
   e.target.closest('ul').remove('remove');
 }
 
+function newToDoInstance(toDo, e) {
+  // debugger;
+  var todo = new ToDo ({ 
+    id: Date.now(),
+    title: getTitle(e),
+    task: [],
+    urgent: false
+  });
+  mainArray.push(todo);
+  newTaskCards(todo, e);
+  localStorage.setItem('localArray', JSON.stringify(todo));
+  // todo.saveToStorage(mainArray);
+
+}
+
+function newTaskCards(todo, e) {
+	// var imgSource = urgentColorState(todo);
+	bodyMainSection.insertAdjacentHTML('afterbegin',
+    `<container id="task__card--container">
+   	  <article id="section__task--card">
+    		<h3>${getTitle()}</h3>
+    		  <div id="task__card--border">
+    				<div id="taskListBox">
+    					<article id="taskCardBody">
+    				 	 <img id="body__icon--checkbox" src="icons/checkbox.svg" alt="Task list check box">
+               <div class='article__ul'>${getTask(e)}</div>
+   		  		 	 <li>${getTask()}</li>
+   		  	  	</article>
+   		  		</div>
+    		  </div>
+    		  <div id="body__icon--bottom">
+   		  		<img id="body__icon--urgent" src="icons/urgent.svg" alt="Make task urgent">
+   		  		<img id="body__icon--delete" src="icons/delete.svg" alt="Delete the task">
+   		  	</div>	
+    	</article>
+     </container>`);
+};
+
 function populateTasks(array) {
    var taskList = `<ul class="article__ul">`;
     tasks.forEach(function(todos) {
@@ -81,13 +120,11 @@ function taskSave(todo){
   }
 }
 
-function saveTodo(objectArray) {
-	var todo = new ToDo(Date.now(), titleInput.value, todos, urgent.value);
-	toDoArray.push(todos);
-	colsole.log(todos)
-};
-
-
+// function saveTodo(objectArray) {
+// 	var todo = new ToDo(Date.now(), titleInput.value, todos, urgent.value);
+// 	// toDoArray.push(todos);
+// 	colsole.log(todos)
+// };
 
 function clearTempTasks(e) {
 	console.log("clear temp tasks")
@@ -95,28 +132,6 @@ function clearTempTasks(e) {
 };
 
 // data-id = ${idea.id}
-function newTaskCards(todo) {
-	// var imgSource = urgentColorState(todo);
-	bodyMainSection.insertAdjacentHTML('afterbegin',
-    `<container id="task__card--container">
-   	  <article id="section__task--card">
-    		<h3>${navTitleInput.value}</h3>
-    		  <div id="task__card--border">
-    				<div id="taskListBox">
-    					<article id="taskCardBody">
-    				 	 <img id="body__icon--checkbox" src="icons/checkbox.svg" alt="Task list check box">
-               <div class='article__ul'>${populateTasks(globalArray)}</div>
-   		  		 	 <p>${taskItemInput.value}</p>
-   		  	  	</article>
-   		  		</div>
-    		  </div>
-    		  <div id="body__icon--bottom">
-   		  		<img id="body__icon--urgent" src="icons/urgent.svg" alt="Make task urgent">
-   		  		<img id="body__icon--delete" src="icons/delete.svg" alt="Delete the task">
-   		  	</div>	
-    	</article>
-     </container>`);
-};
 
 function clearInputs(e) {
   document.querySelectorAll(".task__input--item").forEach(input=>{

@@ -11,7 +11,7 @@ class ToDo {
 		// add to localStorage
 	}
 	deleteFromStorage() {
-		localStorage.setItem("todos", JSON.stringify(todos));
+		localStorage.getItem("todos", JSON.stringify(todos));
 		// remove from local storage
 	}
 	updatedTodo() {
