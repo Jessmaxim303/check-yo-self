@@ -83,11 +83,6 @@ nav {
 	/*margin: 2% auto;*/
 }
 
-nav p {
-	margin-left: px;
-	margin-top: 20px;
-}
-
 #nav__menu--divider {
 	width: 100%;
 	border-bottom: 2px solid #1e1f3d; 
@@ -104,12 +99,12 @@ nav p {
 .nav__input--title {
 	padding: 2% 2% 2% 3%;
     height: 50px;
-    width: 100%;
+    width: 99%;
     background: #ffffff;
     font-size: 1.3em;
     border: 2px solid #1e1f3d;
     border-radius: 3px;
-    margin: 1% 0 10% 0;
+    margin-top: 1%;
 }
 
 .nav__task--container {
@@ -119,9 +114,9 @@ nav p {
 }
 
 .task__input--item {
-	padding-left: 2% 2% 2% 3%;
+	padding: 2% 2% 2% 3%;
 	height: 50px;
-    width: 100%;
+    width: 88%;
     background: #ffffff;
     font-size: 1.3em;
 	background: #ffffff;
@@ -130,13 +125,14 @@ nav p {
 }
 
 .js__add--task {
-	height: 40px;
-	width: 40px;
+	height: 50px;
+	width: 50px;
 	font-size: 1.35em;
     font-weight: 400;
 	background: #1e1f3d;
 	border: 2px solid #1e1f3d;
 	border-radius: 0 3px 3px 0;
+	padding-top: .3em;
 }
 
 #nav__plus--icon {
@@ -145,7 +141,7 @@ nav p {
 }
 
 .nav__button--list {
-	height: 40px;
+	height: 50px;
     width: 100%;
     background: #1e1f3d;
     color: #ffffff;
@@ -157,7 +153,7 @@ nav p {
 }
 
 .nav__button--clear {
-	height: 40px;
+	height: 50px;
 	width: 100%;
 	background: #1e1f3d;
 	color: #ffffff;
@@ -169,8 +165,8 @@ nav p {
 }
 
 .nav__urgency--button {
-	height: 40px;
-    width: 93%;
+	height: 50px;
+    width: 100%;
     background: #1e1f3d;
     color: #ffffff;
     font-size: 1.35em;
@@ -180,8 +176,8 @@ nav p {
     margin: 12% auto 6% auto;
 }
 
-.nav__urgency--button:hover {
-	background: #ef4a23;
+#body__icon--urgent:hover {
+	content:url('icons/urgent-active.svg');
 }
 
 /***NAV TEMP TASK LIST************/
@@ -190,8 +186,12 @@ nav p {
 	display: flex;
 	align-items: center;
 	font-size: 20px;
-	padding-right: 15%;
+	padding-left: 3%;
 	margin-top: 4%;
+}
+
+#task__temp--container li {
+	margin-left: 3%;
 }
 
 #task__temp--container h4 {
@@ -225,17 +225,18 @@ nav p {
     border: none;
 }
 
+#nav__task--icon:hover {
+	content:url('icons/delete-active.svg');
+	background: none;
+}
+
 .task__card--container {
 	width: 30%;
 }
 
-
-
 /******** BODY SECTION **********/
 
 #main__bottom--container {
-    /*column-count: 2;
-    column-gap: 20px;*/
 	height: 1000px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1em;
@@ -324,6 +325,11 @@ nav p {
     justify-content: space-between;
     height: 45px;
     padding: 0 10px 0 10px;
+}
+
+.article__ul {
+	font-size: 20px;
+	color: #1e1f3d;
 }
 
 
