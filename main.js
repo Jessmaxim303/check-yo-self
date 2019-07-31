@@ -1,6 +1,6 @@
 // global veriables ******************
 
-var makeTaskPlus = document.querySelector('.js__add--task');
+var makeTaskPlus = document.querySelector('.nav__add--task');
 var makeTaskCard = document.querySelector('.nav__button--list');
 var deleteButton = document.getElementById('nav__task--list');
 var navTitleInput = document.querySelector('.nav__input--title');
@@ -26,9 +26,9 @@ clearButton.addEventListener("click", clearTaskItems);
 
 // FUNCTIONS ************************
 
-// function getTasksFromLocal(e) {
-//   var tasksFromStorage = JSON.parse(localStorage.getItem('objectArray'));
-// };
+function onPageLoad(e) {
+  var retrievedArray = getTasksFromLocal();
+};
 
 function getTasksFromLocal(e) {
   return JSON.parse(localStorage.getItem('objectArray'));
@@ -42,17 +42,10 @@ function getTask(e){
   return taskInputItem.value;
 };
 
-function onPageLoad() {
-  var retrievedArray = getTasksFromLocal();
-  if (retrievedArray.length > 0) {
-      newTaskCards(retrievedArray);
-  } 
-};
-
 function addTaskItem() {
   var task = new Task({
     id: Date.now(),
-    isCompleted: false,
+    complete: false,
     text: getTask(),
   })
   taskArray.push(task);
@@ -90,18 +83,18 @@ function newToDoInstance(todo, e) {
   newTaskCards(todo);
 };
 
-function populateTasks(array) {
+function insertTasksList(array) {
    var ulList = `<ul class="article__ul">`;
-    taskArray.forEach(function(taskItem) {
-     ulList += `<li class="article__item--li" data-id="${taskItem.id}">
+    taskArray.forEach(function(array) {
+     ulList += `<li class="article__item--li" data-id="${array.id}">
      <img src="icons/checkbox.svg" id="task__icon--checkbox">
-     ${taskItem.text}
+     ${array.text}
      </li>`
   })
   return ulList
 } 
 
-function newTaskCards(todo) {
+function newTaskCards(e) {
 	bodyMainSection.insertAdjacentHTML('afterbegin',
     `<container id="task__card--container" data-id='${todo.id}>
    	  <article id="section__task--card">
@@ -110,7 +103,7 @@ function newTaskCards(todo) {
     				<div id="taskListBox">
     					<article id="taskCardBody">
     				 	 <img id="body__icon--checkbox" src="icons/checkbox.svg" alt="Task list check box">
-               <div class='article__ul'>${populateTasks(mainArray)}</div>
+               <div class='article__ul'>${insertTasksList(mainArray)}</div>
    		  	  	</article>
    		  		</div>
     		  </div>
@@ -133,31 +126,12 @@ function loadCardInfo(retrievedArray) {
 function insertTaskField(array) {
   console.log('insert task field');
   var ulList = `<ul class="article__ul">`;
-    taskArray.forEach(function(taskItem){ 
+    taskArray.forEach(function(task){ 
   ulList += `<li class="article__item--li" data-id="${todo.id}">;
    <img src="icons/checkbox.svg" id="task__card--checkbox">
-     ${taskItem.text}
+     ${task.text}
    </li>`;
  })
-};
-
-function findTaskById(id) {
-  var locatedIdea = globalArray.find(eachTaskInArray => eachTaskInArray.id === parseInt(id));
-  return locatedIdea   
-}
-
-// function findIndex(e) {
-//   var id = e.target.closest('#task__card--container').dataset.id;
-//   var getIndex = mainArray.findIndex(obj => {
-//     return parseInt(id) === obj.id
-//   });
-//   return getIndex
-// };
-
-function enableSaveButton(e) {
-  if (taskItemInput.value != "" && navTitleInput.value !="") {
-    makeTaskCard.disabled = false;
-  }
 };
 
 function clearTempTasks(e) {
@@ -167,6 +141,6 @@ function clearTempTasks(e) {
 function clearInputs(e) {
   document.querySelectorAll(".task__input--item").forEach(input=>{
     taskInputItem.value = ""})
-};
+}
 }
 
