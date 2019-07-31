@@ -19,7 +19,6 @@ class ToDo {
 	this.tasks.push(taskArray);
 	}
 
-// ***Closing brace***
 };
 
 class Task {
@@ -29,5 +28,5 @@ class Task {
         this.complete = false;
     }
 
-// ***Closing brace***
+
 };
