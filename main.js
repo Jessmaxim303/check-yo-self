@@ -13,11 +13,11 @@ var navTaskList = document.getElementById('nav__task--list');
 var bodyMainSection = document.querySelector('.section__body--main');
 var sectionTaskCard = document.getElementById('section__task--card');
 var mainArray = [];
-var todos = [];
+var taskArray = [];
 
 // EVENT LISTENER *******************
 
-window.addEventListener("load", onPageLoud);
+window.addEventListener("load", onPageLoad);
 makeTaskPlus.addEventListener("click", addTaskItem);
 navTaskList.addEventListener("click", deleteTaskItem);
 makeTaskCard.addEventListener("click", newToDoInstance);
@@ -26,9 +26,13 @@ clearButton.addEventListener("click", clearTaskItems);
 
 // FUNCTIONS ************************
 
+// function getTasksFromLocal(e) {
+//   var tasksFromStorage = JSON.parse(localStorage.getItem('objectArray'));
+// };
+
 function getTasksFromLocal(e) {
-  return JSON.parse(localStorage.getItem('localArray'));
-};
+  return JSON.parse(localStorage.getItem('objectArray'));
+}
 
 function getTitle(e){
   return navTitleInput.value;
@@ -38,14 +42,11 @@ function getTask(e){
   return taskInputItem.value;
 };
 
-function onPageLoud(e) {
-  console.log('On page loud');
+function onPageLoad() {
   var retrievedArray = getTasksFromLocal();
-  console.log('On page loud2');
-  console.log(retrievedArray);
   if (retrievedArray.length > 0) {
-  newTaskCards(e); 
-  }
+      newTaskCards(retrievedArray);
+  } 
 };
 
 function addTaskItem() {
@@ -54,7 +55,7 @@ function addTaskItem() {
     isCompleted: false,
     text: getTask(),
   })
-  todos.push(task);
+  taskArray.push(task);
   navTaskList.insertAdjacentHTML('afterbegin',
     `<ul id="task__temp--container" data-id=${task.id}>
         <button id="nav__task--icondelete">
@@ -73,25 +74,34 @@ function clearTaskItems(e) {
   e.target.closest('div').remove('remove');
 };
 
-function newToDoInstance(e) {
-  if(todos.length === 0 || navTitleInput.value === '') {
-    return 'Add tasks please';
-  }else{
+function newToDoInstance(todo, e) {
+  if(taskArray.length === 0 || navTitleInput.value === '') {
+    return 'No tasks';
+  } else {
   var todo = new ToDo ({ 
     id: Date.now(),
     title: getTitle(e),
-    tasks: todos,
+    tasks: [],
     urgent: false
   });
   mainArray.push(todo);
-  mainArray[0].newTask(todos[0]);
-  localStorage.setItem('localArray', JSON.stringify(todo));
+  mainArray[0].newTask(taskArray[0]);
+  todo.saveToStorage(mainArray);
   newTaskCards(todo);
 };
 
+function populateTasks(array) {
+   var ulList = `<ul class="article__ul">`;
+    taskArray.forEach(function(taskItem) {
+     ulList += `<li class="article__item--li" data-id="${taskItem.id}">
+     <img src="icons/checkbox.svg" id="task__icon--checkbox">
+     ${taskItem.text}
+     </li>`
+  })
+  return ulList
+} 
+
 function newTaskCards(todo) {
-  getTasksFromLocal(e)
-	// var imgSource = urgentColorState(todo);
 	bodyMainSection.insertAdjacentHTML('afterbegin',
     `<container id="task__card--container" data-id='${todo.id}>
    	  <article id="section__task--card">
@@ -100,7 +110,7 @@ function newTaskCards(todo) {
     				<div id="taskListBox">
     					<article id="taskCardBody">
     				 	 <img id="body__icon--checkbox" src="icons/checkbox.svg" alt="Task list check box">
-               <div class='article__ul'>${insertTaskField(localArray)}</div>
+               <div class='article__ul'>${populateTasks(mainArray)}</div>
    		  	  	</article>
    		  		</div>
     		  </div>
@@ -110,13 +120,20 @@ function newTaskCards(todo) {
    		  	</div>	
     	</article>
      </container>`);
-  // insertTaskField(e);
 };
+
+function loadCardInfo(retrievedArray) {
+  retrievedArray.forEach(function(retrievedArray) {
+    newTaskCards(retrievedArray);
+    var todo = new ToDo(retrievedArray);
+    mainArray.push(todo);
+    })
+}
 
 function insertTaskField(array) {
   console.log('insert task field');
   var ulList = `<ul class="article__ul">`;
-    todos.forEach(function(taskItem){ 
+    taskArray.forEach(function(taskItem){ 
   ulList += `<li class="article__item--li" data-id="${todo.id}">;
    <img src="icons/checkbox.svg" id="task__card--checkbox">
      ${taskItem.text}
@@ -124,13 +141,18 @@ function insertTaskField(array) {
  })
 };
 
-function findIndex(event) {
-  var id = event.target.closest('.main__section__article').dataset.id;
-  var getIndex = mainlArray.findIndex(obj => {
-    return parseInt(id) === obj.id
-  });
-  return getIndex
-};
+function findTaskById(id) {
+  var locatedIdea = globalArray.find(eachTaskInArray => eachTaskInArray.id === parseInt(id));
+  return locatedIdea   
+}
+
+// function findIndex(e) {
+//   var id = e.target.closest('#task__card--container').dataset.id;
+//   var getIndex = mainArray.findIndex(obj => {
+//     return parseInt(id) === obj.id
+//   });
+//   return getIndex
+// };
 
 function enableSaveButton(e) {
   if (taskItemInput.value != "" && navTitleInput.value !="") {

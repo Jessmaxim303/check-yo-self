@@ -7,17 +7,16 @@ class ToDo {
 	}
 	// ***Functions****
 
-	saveToStorage(todos) {
-		localStorage.setItem("todo", JSON.stringify(todos));
+	saveToStorage(array) {
+		localStorage.setItem("objectArray", JSON.stringify(array));
 	}
 
 	deleteFromStorage() {
-		localStorage.removeItem("todos", JSON.stringify(todos));
-		// get item back from local storage
+		
 	}
 
-	newTask(task) {
-	this.tasks.push(task)
+	newTask(taskArray) {
+	this.tasks.push(taskArray);
 	}
 
 // ***Closing brace***
@@ -27,6 +26,7 @@ class Task {
     constructor(obj) {
         this.id = obj.id;
         this.text = obj.text;
+        this.complete = false;
     }
 
 // ***Closing brace***
