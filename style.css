@@ -1,3 +1,7 @@
+/** {
+	border: 2px dotted red;
+}*/
+
 * {
 	margin: 0;
 	padding: 0;
@@ -233,37 +237,41 @@ nav {
 }
 
 .section__body--main {
-	column-count: 2;
+	/*column-count: 2;*/
     column-gap: 20px;
 }
 
 #task__card--container {
 	box-sizing: border-box;
-    display: inline-block;
-    min-height: 325px;
+    display: flex;
+    flex-direction: column;
+    /*min-height: 325px;*/
     min-width: 325px;
     margin: 0 8px 8px 0;
     background: #ffffff;
     border: 2px solid #c7d3d8;
-    width: 100%;
+    width: 40%;
+    font-size: 1.4em;
+    font-weight: 700;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+#task__card--container section{
+    margin: 20px;
+}
+
+#task__card--container h3{
+	color: blue;
 }
 
 #section__task--card {
 	background: #fafdff;
-	border: 1px dotted green;
-	height: 300px;
-	width: 100%;
+	height: 400px;
+	width: 325px;
     display: inline-block;
     margin: 0 8px 8px 0;
-}
-
-#section__task--card h3 {
-	color: #1e1f3d;
-	font-size: 1.4em;
-	font-weight: 600;
-	padding: 2.5%;
-	width: 60%;
+    font-size: 1.4em;
+    font-weight: 400;
 }
 
 #section__task--card p {
@@ -283,16 +291,14 @@ nav {
 
 #taskCardBody {
 	display: flex;
-    height: 240px;
+    /*height: 325px;*/
     padding: 10px 10px 0 10px;
-    width: 200px;
+    /*width: 200px;*/
 }
 
 #task__card--border {
-	background: red;
 	border-bottom: 2px solid #c7d3d8;
 	border-top: 2px solid #c7d3d8;
-	min-height: 200px;
 	width: 100%;
 }
 
@@ -316,8 +322,15 @@ nav {
 }
 
 .article__ul {
-	color: #1e1f3d;
-	font-size: 20px;
+	
+
+}
+
+.todo_title {
+	width: 100px;
+	height: 200px;
+	background: blue;
+	font-size: 5em;
 }
 
 #task__icon--checkbox {
@@ -331,9 +344,34 @@ nav {
 	width: 200px;
 }
 
+.article__item--li {
+	display: flex;
+	align-items: center;
+	width: 300px;
+	height: 50px
+}
 
+#task__title--area {
+	display: flex;
+	align-items: center;
+	background: orange;
+	font-size: 3em;
+	width: 300px;
+	height: 50px
+	margin: 75px;
+	color: red;
+}
 
-/******** MEDIA QUERY SECTION **********/
+.task__title--box {
+	display: flex;
+	align-items: center;
+	background: orange;
+	font-size: 3em;
+	width: 100px;
+	height: 50px
+	margin: 75px;
+	color: red;
+}
 
 @media only screen and (max-width: 1120px) {
 

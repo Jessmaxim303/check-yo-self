@@ -8,6 +8,7 @@ class ToDo {
 	// ***Functions****
 
 	saveToStorage(array) {
+		console.log('savetostorage')
 		localStorage.setItem("objectArray", JSON.stringify(array));
 	}
 
@@ -16,7 +17,7 @@ class ToDo {
 	}
 
 	newTask(taskArray) {
-	this.tasks.push(taskArray);
+	this.tasks = taskArray;
 	}
 
 };

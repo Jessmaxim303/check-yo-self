@@ -8,11 +8,10 @@ var taskInputItem = document.querySelector('.task__input--item');
 var navTaskList = document.getElementById('nav__task--list');
 var clearButton = document.querySelector('.nav__button--clear');
 var tempNavList = document.getElementById('task__temp--container');
-
 var navTaskList = document.getElementById('nav__task--list');
 var bodyMainSection = document.querySelector('.section__body--main');
 var sectionTaskCard = document.getElementById('section__task--card');
-var mainArray = [];
+var mainArray = JSON.parse(localStorage.getItem('objectArray')) || [];
 var taskArray = [];
 
 // EVENT LISTENER *******************
@@ -21,18 +20,39 @@ window.addEventListener("load", onPageLoad);
 makeTaskPlus.addEventListener("click", addTaskItem);
 navTaskList.addEventListener("click", deleteTaskItem);
 makeTaskCard.addEventListener("click", newToDoInstance);
-clearButton.addEventListener("click", clearTaskItems);
-// deleteButton.addEventListerner("click", clearTempTasks);
+clearButton.addEventListener("click", clearAll);
 
 // FUNCTIONS ************************
 
-function onPageLoad(e) {
-  var retrievedArray = getTasksFromLocal();
+function newTaskCards(todo) {
+  console.log('maketask')
+  bodyMainSection.insertAdjacentHTML('afterbegin',
+    `<container id="task__card--container" data-id='${todo.id}>
+      <div id="section__task--card">
+           <section class='todo_title'>${todo.title}</section>
+              <article id="task__card--border">
+               <div class='article__ul'>${insertTasksList(todo)}</div>
+              </article>
+          <div id="body__icon--bottom">
+            <img id="body__icon--urgent" src="icons/urgent.svg" alt="Make task urgent">
+            <img id="body__icon--delete" src="icons/delete.svg" alt="Delete the task">
+          </div>  
+      </div>
+     </container>`);
 };
 
-function getTasksFromLocal(e) {
-  return JSON.parse(localStorage.getItem('objectArray'));
+function onPageLoad() {
+  // mainArray = getTasksFromLocal();
+  appendList();
+  // newToDoInstance(retrievedArray);
+};
+
+function appendList() {
+  mainArray.forEach(todo => newTaskCards(todo));
 }
+// function getTasksFromLocal(e) {
+//   return JSON.parse(localStorage.getItem('objectArray'));
+// };
 
 function getTitle(e){
   return navTitleInput.value;
@@ -56,64 +76,59 @@ function addTaskItem() {
         </button>
       <li>${getTask()}</li>
     </ul>`);
+  clearFields(e)
 };
 
 function deleteTaskItem(e) {
   e.target.closest('ul').remove('remove');
 };
 
-function clearTaskItems(e) {
-  console.log('clear tasks function')
-  e.target.closest('div').remove('remove');
+function clearAllTasks(e) {
+ var clearsAll = document.querySelectorAll('')
+}
+
+function clearAll(e) {
+  var clears = document.querySelectorAll('ul');
+  clears.innerHTML = '';
+  navTaskList.innerHTML = '';
+  clearFields(e);
 };
 
-function newToDoInstance(todo, e) {
-  if(taskArray.length === 0 || navTitleInput.value === '') {
+function clearFields(e) {
+  document.querySelectorAll('input').forEach(input=>{
+    input.value = ""
+  })
+};
+
+function newToDoInstance(e) {
+  if(mainArray.length === 0 || navTitleInput.value === '') {
     return 'No tasks';
   } else {
   var todo = new ToDo ({ 
     id: Date.now(),
     title: getTitle(e),
-    tasks: [],
+    tasks: taskArray,
     urgent: false
   });
   mainArray.push(todo);
-  mainArray[0].newTask(taskArray[0]);
-  todo.saveToStorage(mainArray);
   newTaskCards(todo);
+  todo.saveToStorage(mainArray)
+  taskArray = [];
+  clearFields(e);
+  clearAll(e);
+  }
 };
 
-function insertTasksList(array) {
+function insertTasksList(todo) {
    var ulList = `<ul class="article__ul">`;
-    taskArray.forEach(function(array) {
-     ulList += `<li class="article__item--li" data-id="${array.id}">
+    todo.tasks.forEach(function(task) {
+     ulList += `<li class="article__item--li" data-id="${task.id}">
      <img src="icons/checkbox.svg" id="task__icon--checkbox">
-     ${array.text}
+     ${task.text}
      </li>`
   })
   return ulList
-} 
-
-function newTaskCards(e) {
-	bodyMainSection.insertAdjacentHTML('afterbegin',
-    `<container id="task__card--container" data-id='${todo.id}>
-   	  <article id="section__task--card">
-    		<h3>${todo.title}</h3>
-    		  <div id="task__card--border">
-    				<div id="taskListBox">
-    					<article id="taskCardBody">
-    				 	 <img id="body__icon--checkbox" src="icons/checkbox.svg" alt="Task list check box">
-               <div class='article__ul'>${insertTasksList(mainArray)}</div>
-   		  	  	</article>
-   		  		</div>
-    		  </div>
-    		  <div id="body__icon--bottom">
-   		  		<img id="body__icon--urgent" src="icons/urgent.svg" alt="Make task urgent">
-   		  		<img id="body__icon--delete" src="icons/delete.svg" alt="Delete the task">
-   		  	</div>	
-    	</article>
-     </container>`);
-};
+}; 
 
 function loadCardInfo(retrievedArray) {
   retrievedArray.forEach(function(retrievedArray) {
@@ -121,7 +136,7 @@ function loadCardInfo(retrievedArray) {
     var todo = new ToDo(retrievedArray);
     mainArray.push(todo);
     })
-}
+};
 
 function insertTaskField(array) {
   console.log('insert task field');
@@ -141,6 +156,5 @@ function clearTempTasks(e) {
 function clearInputs(e) {
   document.querySelectorAll(".task__input--item").forEach(input=>{
     taskInputItem.value = ""})
-}
 }
 
