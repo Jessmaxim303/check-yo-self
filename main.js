@@ -11,6 +11,7 @@ var tempNavList = document.getElementById('task__temp--container');
 var navTaskList = document.getElementById('nav__task--list');
 var bodyMainSection = document.querySelector('.section__body--main');
 var sectionTaskCard = document.getElementById('section__task--card');
+var bodyIconDelete = document.getElementById('body__icon--delete');
 var mainArray = JSON.parse(localStorage.getItem('objectArray')) || [];
 var taskArray = [];
 
@@ -21,6 +22,7 @@ makeTaskPlus.addEventListener("click", addTaskItem);
 navTaskList.addEventListener("click", deleteTaskItem);
 makeTaskCard.addEventListener("click", newToDoInstance);
 clearButton.addEventListener("click", clearAll);
+bodyIconDelete.addEventListener("click" deleteTaskCard);
 
 // FUNCTIONS ************************
 
@@ -42,17 +44,12 @@ function newTaskCards(todo) {
 };
 
 function onPageLoad() {
-  // mainArray = getTasksFromLocal();
   appendList();
-  // newToDoInstance(retrievedArray);
 };
 
 function appendList() {
   mainArray.forEach(todo => newTaskCards(todo));
 }
-// function getTasksFromLocal(e) {
-//   return JSON.parse(localStorage.getItem('objectArray'));
-// };
 
 function getTitle(e){
   return navTitleInput.value;
@@ -78,6 +75,10 @@ function addTaskItem() {
     </ul>`);
   clearFields(e)
 };
+
+deleteTaskCard() {
+
+}
 
 function deleteTaskItem(e) {
   e.target.closest('ul').remove('remove');
