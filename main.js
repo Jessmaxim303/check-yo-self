@@ -39,20 +39,16 @@ function newTaskCards(todo) {
           </div>  
       </div>
      </container>`);
+  console.log('made task?')
 };
 
 function onPageLoad() {
-  // mainArray = getTasksFromLocal();
   appendList();
-  // newToDoInstance(retrievedArray);
 };
 
 function appendList() {
   mainArray.forEach(todo => newTaskCards(todo));
 }
-// function getTasksFromLocal(e) {
-//   return JSON.parse(localStorage.getItem('objectArray'));
-// };
 
 function getTitle(e){
   return navTitleInput.value;
@@ -76,7 +72,6 @@ function addTaskItem() {
         </button>
       <li>${getTask()}</li>
     </ul>`);
-  clearFields(e)
 };
 
 function deleteTaskItem(e) {
@@ -85,13 +80,13 @@ function deleteTaskItem(e) {
 
 function clearAllTasks(e) {
  var clearsAll = document.querySelectorAll('')
-}
+};
 
 function clearAll(e) {
   var clears = document.querySelectorAll('ul');
   clears.innerHTML = '';
   navTaskList.innerHTML = '';
-  clearFields(e);
+  clearFields();
 };
 
 function clearFields(e) {
@@ -100,32 +95,34 @@ function clearFields(e) {
   })
 };
 
-function newToDoInstance(e) {
-  if(mainArray.length === 0 || navTitleInput.value === '') {
-    return 'No tasks';
-  } else {
+function newToDoInstance() {
+  // if(mainArray.length === 0 || navTitleInput.value === '') {
+  //   return 'No tasks';
+  // } else {
+  console.log('is there anyone out there');
   var todo = new ToDo ({ 
     id: Date.now(),
-    title: getTitle(e),
+    title: getTitle(),
     tasks: taskArray,
     urgent: false
   });
-  mainArray.push(todo);
   newTaskCards(todo);
+  mainArray.push(todo);
   todo.saveToStorage(mainArray)
   taskArray = [];
   clearFields(e);
   clearAll(e);
-  }
+  
 };
 
 function insertTasksList(todo) {
    var ulList = `<ul class="article__ul">`;
-    todo.tasks.forEach(function(task) {
-     ulList += `<li class="article__item--li" data-id="${task.id}">
-     <img src="icons/checkbox.svg" id="task__icon--checkbox">
-     ${task.text}
-     </li>`
+   console.log(todo);
+   todo.tasks.forEach(function(task) {
+   ulList += `<li class="article__item--li" data-id="${task.id}">
+   <img src="icons/checkbox.svg" id="task__icon--checkbox">
+   ${task.text}
+   </li>`
   })
   return ulList
 }; 
@@ -136,17 +133,6 @@ function loadCardInfo(retrievedArray) {
     var todo = new ToDo(retrievedArray);
     mainArray.push(todo);
     })
-};
-
-function insertTaskField(array) {
-  console.log('insert task field');
-  var ulList = `<ul class="article__ul">`;
-    taskArray.forEach(function(task){ 
-  ulList += `<li class="article__item--li" data-id="${todo.id}">;
-   <img src="icons/checkbox.svg" id="task__card--checkbox">
-     ${task.text}
-   </li>`;
- })
 };
 
 function clearTempTasks(e) {

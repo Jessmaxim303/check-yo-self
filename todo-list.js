@@ -8,7 +8,6 @@ class ToDo {
 	// ***Functions****
 
 	saveToStorage(array) {
-		console.log('savetostorage')
 		localStorage.setItem("objectArray", JSON.stringify(array));
 	}
 
